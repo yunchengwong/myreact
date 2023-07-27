@@ -2,15 +2,13 @@
 
 From React Documentation: [Tutorial: Tic-Tac-Toe](https://react.dev/learn/tutorial-tic-tac-toe).
 
-## Overview
-
-#### building the board
+## building the board
 
 create a square for button in **Square.js** and a matrix of squares in **Board.js**.
 
 pass the `value` of button from **Board** to **Square** through props
 
-#### making an interactive component
+## making an interactive component
 
 create React State `values`, an array of 9, to store clicked position (`value`) on the **Board**
 ```
@@ -43,17 +41,17 @@ nextValues[0] = 'X';
 setValues(nextValues);
 ```
 
-#### taking turns
+## taking turns
 
 use conditional to switch symbol for different player
 
 prevent button being clicked twice by returning early
 
-#### declaring a winner
+## declaring a winner
 
 helper function, uses little or no variable, is put at the end of the file
 
-#### storing a history of moves
+## storing a history of moves
 
 create an array of `values` to store history of moves, `values` is replaced with `history`
 ```
@@ -82,12 +80,12 @@ return (
 )
 ```
 
-#### implementing time travel
+## implementing time travel
 
 current move == history.length - 1
 
 create React State for `currentMove`, which update `onClick`
 
-#### final cleanup
+## final cleanup
 
 remove redundant state: xIsNext can be calculated with currentMove
