@@ -1,6 +1,6 @@
 # Quick Start
 
-Welcome to the React documentation! [Quick Start](https://react.dev/learn).
+Getting started from React documentation! [Quick Start](https://react.dev/learn).
 
 ## You will learn
 
