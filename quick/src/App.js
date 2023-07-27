@@ -17,6 +17,9 @@ function App() {
       {1 > 2 ? <MyButton /> : <AboutPage />}
       {1 < 2 && <Profile />}
       <ShoppingList />
+      <h1>Counters that update separately</h1>
+      <MyButton />
+      <MyButton />
     </div>
   );
 }
