@@ -59,12 +59,12 @@ const [history, setHistory] = useState([Array(9).fill(null)]);
 const currentValues = history[history.length - 1];
 ```
 
-spread syntax (JS) is used to copy previous values (`currentValues`) to current values in `setHistory`
+JS spread syntax is used to copy previous values (`currentValues`) to current values in `setHistory`
 ```
 setHistory([...history, nextValue]);
 ```
 
-array method `map` in matrix
+JS array method `map` in matrix
 ```
 const moves = history.map((values, move) => {
 
