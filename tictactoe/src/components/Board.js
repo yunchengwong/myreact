@@ -1,24 +1,31 @@
-import React from 'react'
 import Square from './Square'
 import '../App.css';
+import React, { useState } from 'react'
 
 function Board() {
+  const [values, setValues] = useState(Array(9).fill(null));
+
+  function handleClick(i) {
+    const nextSquares = values.slice();
+    nextSquares[i] = 'X';
+    setValues(nextSquares)
+  }
   return (
     <>
       <div className='board-row'>
-        <Square value="1" />
-        <Square value="2" />
-        <Square value="3" />
+        <Square value={values[0]} handleClick={() => handleClick(0)} />
+        <Square value={values[1]} handleClick={() => handleClick(1)} />
+        <Square value={values[2]} handleClick={() => handleClick(2)} />
       </div>
       <div className='board-row'>
-        <Square value="4" />
-        <Square value="5" />
-        <Square value="6" />
+        <Square value={values[3]} handleClick={() => handleClick(3)} />
+        <Square value={values[4]} handleClick={() => handleClick(4)} />
+        <Square value={values[5]} handleClick={() => handleClick(5)} />
       </div>
       <div className='board-row'>
-        <Square value="7" />
-        <Square value="8" />
-        <Square value="9" />
+        <Square value={values[6]} handleClick={() => handleClick(6)} />
+        <Square value={values[7]} handleClick={() => handleClick(7)} />
+        <Square value={values[8]} handleClick={() => handleClick(7)} />
       </div>
     </>
   )
