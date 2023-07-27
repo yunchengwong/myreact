@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Tutorial: Tic-Tac-Toe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+From React Documentation: [Tutorial: Tic-Tac-Toe](https://react.dev/learn/tutorial-tic-tac-toe).
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+#### building the board
 
-### `npm start`
+create a square for button in **Square.js** and a matrix of squares in **Board.js**.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+pass the `value` of button from **Board** to **Square** through props
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### making an interactive component
 
-### `npm test`
+create React State `values`, an array of 9, to store clicked position (`value`) on the **Board**
+```
+const [values, setValues] = useState(Array(9).fill(null));
+```
+where `values = [null, null, null, null, null, null, null, null, null]`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+never pass parameter to function using parentheses inside props
+```
+<Square value={values[0]} onClick={handleClick(0)} />
+```
+error: too many re-renders. react limits the number of renders to prevent an infinite loop
 
-### `npm run build`
+instead, nest an arrow function inside props
+```
+<Square value={values[0]} onClick={() => handleClick(0)} />
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+immutability of array supports complex feature (e.g. "time travel")
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+mutate data: 
+```
+values[0] = 'X';
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+without mutate data: 
+```
+const nextValues = values.slice();
+nextValues[0] = 'X';
+setValues(nextValues);
+```
 
-### `npm run eject`
+#### taking turns
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+use conditional to switch symbol for different player
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+prevent button being clicked twice by returning early
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### declaring a winner
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+helper function, uses little or no variable, is put at the end of the file
 
-## Learn More
+#### storing a history of moves
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+create an array of `values` to store history of moves, `values` is replaced with `history`
+```
+const [history, setHistory] = useState([Array(9).fill(null)]);
+const currentValues = history[history.length - 1];
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+spread syntax (JS) is used to copy previous values (`currentValues`) to current values in `setHistory`
+```
+setHistory([...history, nextValue]);
+```
 
-### Code Splitting
+array method `map` in matrix
+```
+const moves = history.map((values, move) => {
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+}
+```
+where `values == history[move]`
 
-### Analyzing the Bundle Size
+every listItem must have a unique key when rendering a list
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+return (
+  <li key={move}></li>
+)
+```
 
-### Making a Progressive Web App
+#### implementing time travel
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+current move == history.length - 1
 
-### Advanced Configuration
+create React State for `currentMove`, which update `onClick`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### final cleanup
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+remove redundant state: xIsNext can be calculated with currentMove
