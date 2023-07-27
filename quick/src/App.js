@@ -10,8 +10,11 @@ function App() {
       <h1>Welcome to my app</h1>
       <MyButton />
       <AboutPage />
-      <img className="avatar" src={logo} />
+      <img className="avatar" src={logo} alt="" />
       <Profile />
+      {1 < 2 ? <MyButton /> : <AboutPage />}
+      {1 > 2 ? <MyButton /> : <AboutPage />}
+      {1 < 2 && <Profile />}
     </div>
   );
 }
