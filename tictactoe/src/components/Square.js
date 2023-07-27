@@ -1,9 +1,8 @@
-import React from 'react'
 import '../App.css';
 
-function Square({ value }) {
+function Square({ value, handleClick }) {
   return (
-    <button className='square'>
+    <button className='square' onClick={handleClick}>
       {value}
     </button>
   )
