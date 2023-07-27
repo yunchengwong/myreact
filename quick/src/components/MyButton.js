@@ -1,8 +1,11 @@
 import React from 'react'
 
 function MyButton() {
+  function handleClick() {
+    alert('You clicked me!');
+  }
   return (
-    <button>I'm a Button</button>
+    <button onClick={handleClick}>I'm a Button</button>
   )
 }
 
