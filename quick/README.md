@@ -1,30 +1,29 @@
 # Quick Start
 
-Getting started from React documentation. [Quick Start](https://react.dev/learn).
+From React documentation: [Quick Start](https://react.dev/learn).
 
-## You will learn
 
-#### creating and nesting components (MyButton.js)
+## creating and nesting components (MyButton.js)
 
 with react snippets (`rfce`) and self-closing component tags (`<MyButton />`)
 
-#### writing markup with jsx
+## writing markup with jsx
 
 a stricter HTML
 
-#### adding styles (App.css)
+## adding styles (App.css)
 
 replacing `class` with `className` attribute
 
-#### displaying data (Profile.js)
+## displaying data (Profile.js)
 
 with curly braces (`{'Photo of ' + user.name}`)
 
-#### conditional rendering
+## conditional rendering
 
 conditional/ternary (`?`) operator without `else` branch (`{isLoggedIn && <AdminPanel />}`)
 
-#### rendering lists (ShoppingList.js)
+## rendering lists (ShoppingList.js)
 
 with JS array method `map()`
 
@@ -36,14 +35,14 @@ const listItems = products.map(product =>
 );
 ```
 
-#### responding to events (MyButton.js)
+## responding to events (MyButton.js)
 
 with `function` inside component
 
-#### updating the screen (MyButton.js)
+## updating the screen (MyButton.js)
 
 with React hook `useState()`
 
-#### sharing data between components
+## sharing data between components
 
-by moving the state up to the shared component (e.g. App.js)
+by moving the state up to the shared component (e.g. **App.js**)
