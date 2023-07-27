@@ -7,9 +7,9 @@ function Board() {
   const [xIsNext, setXIsNext] = useState(true);
 
   function handleClick(i) {
-    if (values[i] {
+    if (values[i]) {
       return;
-    })
+    }
     const nextSquares = values.slice();
     if (xIsNext) {
       nextSquares[i] = 'X';
