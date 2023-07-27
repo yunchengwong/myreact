@@ -88,4 +88,4 @@ create React State for `currentMove`, which update `onClick`
 
 ## final cleanup
 
-remove redundant state: xIsNext can be calculated with currentMove
+remove redundant state: `xIsNext` can be calculated with `currentMove`
