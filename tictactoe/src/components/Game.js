@@ -6,11 +6,10 @@ function Game() {
 
   const [currentMove, setCurrentMove] = useState(0);
   const currentValues = history[currentMove];
-
   const xIsNext = currentMove % 2 === 0;
 
   function handlePlay(nextValue) {
-    const nextHistory = [...history.slice(0, currentMove), nextValue];
+    const nextHistory = [...history.slice(0, currentMove + 1), nextValue];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
@@ -40,7 +39,7 @@ function Game() {
         <Board values={currentValues} xIsNext={xIsNext} onPlay={handlePlay} />
       </div>
       <div>
-        {moves}
+        <ol>{moves}</ol>
       </div>
     </div>
   )

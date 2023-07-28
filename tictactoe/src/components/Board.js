@@ -42,7 +42,7 @@ function Board({ values, xIsNext, onPlay }) {
       <div className='board-row'>
         <Square value={values[6]} handleClick={() => handleClick(6)} />
         <Square value={values[7]} handleClick={() => handleClick(7)} />
-        <Square value={values[8]} handleClick={() => handleClick(7)} />
+        <Square value={values[8]} handleClick={() => handleClick(8)} />
       </div>
     </>
   )
@@ -63,7 +63,7 @@ function calculateWinner(values) {
   ];
   for (let i = 0; i < 8; i++) {
     const [a, b, c] = lines[i];
-    if (values[a] === values[b] && values[b] === values[c] && values[a] === values[c]) {
+    if (values[a] && values[a] === values[b] && values[a] === values[c]) {
       return values[a];
     }
   }
