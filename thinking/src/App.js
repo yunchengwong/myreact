@@ -2,12 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import ProductTable from './components/ProductTable';
+import React, { useState } from 'react'
 
 function App() {
+  const [filterText, setFilterText] = useState('');
+  const [inStockOnly, setInStockOnly] = useState(false);
+
   return (
     <div className="App">
-      <SearchBar />
-      <ProductTable products={products}/>
+      <SearchBar filterText={filterText} inStockOnly={inStockOnly} onFilterTextChange={setFilterText} onInStockOnlyChange={setInStockOnly} />
+      <ProductTable products={products} filterText={filterText} inStockOnly={inStockOnly} />
     </div>
   );
 }
