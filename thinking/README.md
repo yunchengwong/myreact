@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Thinking in React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+From React documentation: [Thinking in React](https://react.dev/learn/thinking-in-react)
 
-## Available Scripts
+## material from desginer
 
-In the project directory, you can run:
+JSON API (original data):
+```
+const PRODUCTS = [
+  { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
+  { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
+  { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
+  { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
+  { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
+  { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
+]
+```
 
-### `npm start`
+mockup (sample drawing of UI):
+![image](https://github.com/yunchengwong/myreact/assets/48376163/99bb5085-4f8e-48b8-adc1-2b236b1c22fc)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## step 1: create components and their hierarchy
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- App (contains `<SearchBar />` and `<ProductTable />`)
+  - SearchBar
+  - ProductTable (contains `<ProductCategoryRow />` and `<ProductRow />`)
+    - ProductCategoryRow
+    - ProductRow
 
-### `npm test`
+## step 2: pass the original data through prop
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- App (pass `products`)
+  - SearchBar (need `products`)
+  - ProductTable (need products for iteration, to pass `product`)
+    - ProductCategoryRow (need products `category`)
+    - ProductRow (need `product.price`, `product.stocked`, `product.name`)
 
-### `npm run build`
+tips: add key attribute when rendering listItem (`product`)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## step 3: create React state
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. think of all of the pieces of data
+   - products (original data)
+   - search input
+   - checkbox input
+   - filtered products
+  
+2. identify state
+   - state change ovetime
+   - state cannot be computed by existing data
+   - state: search input, checkbox input
+     
+3. identify components that use state
+   - components: **SearchBar**, **ProductTable**
+  
+4. decide where the state live
+   - common parent: **App**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. pass state as props
 
-### `npm run eject`
+## step 4: add inverse data flow
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- pass set function through prop
+- add event handler to call function (using an arrow function)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+function SearchBar({ filterText, onFilterTextChange }) {
+  return (
+    <form>
+      <input type='text' value={filterText} onChange={(e) => onFilterTextChange(e.target.value)} />
+    </form>
+  )
+}
+```
