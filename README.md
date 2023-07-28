@@ -1,7 +1,5 @@
 # myreact
 
-My notes on React documentation.
-
 ## quick
 
 Quick Start (https://react.dev/learn)
