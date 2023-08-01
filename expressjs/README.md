@@ -2,15 +2,15 @@
 
 From [Simplest and Fastest React Express App Setup](https://medium.com/@ABiasedHypocrite/simplest-and-fastest-react-express-app-setup-8497ed8db0d1)
 
-## Create the App 
+## create the app 
 
 with `create-react-app` and `express-generator`:
 
 ```
-mkdir todo
-cd todo
+mkdir expressjs
+cd expressjs
 npx create-react-app client
-npx express-generator backend --no-view
+npx express-generator backend
 cd backend
 npm install
 ```
@@ -51,6 +51,7 @@ fetch('http://localhost:3001/users')
 ```
 
 (client/src/App.js)
+
 ```
 fetch('/users')
   .then(response => response.text())
@@ -58,8 +59,6 @@ fetch('/users')
 ```
 
 ## Running Locally and Concurrently
-
-from [Simplest and Fastest React Express App Setup](https://medium.com/@ABiasedHypocrite/simplest-and-fastest-react-express-app-setup-8497ed8db0d1)
 
 #### without concurrently package:
 
@@ -78,11 +77,11 @@ npm run start
 #### with concurrently package:
 
 ```
-cd todo
+cd expressjs
 npm install concurrently
 ```
 
-(todo/package.json)
+(expressjs/package.json)
 ```
 {
   ...,
@@ -94,6 +93,6 @@ npm install concurrently
 
 in VS Code terminal:
 ```
-cd todo
+cd expressjs
 npm run start
 ```
